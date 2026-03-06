@@ -10,8 +10,10 @@ app.use(express.json());
 app.use('/order', orderRoutes);
 
 
-const PORT = process.env.MONGODB_URL || 3000;
+const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
+app.listen(PORT, async() => {
+    await connectDB();
+    
     console.log(`Server running on port ${PORT}`);
 });
