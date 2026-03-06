@@ -7,8 +7,12 @@ const authRoutes = require('./src/routes/authRoutes');
 const app = express();
 app.use(express.json());
 
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
+
 //Rotas
 app.use('/auth', authRoutes);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/order', orderRoutes);
 
 
